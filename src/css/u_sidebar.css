@@ -1,0 +1,655 @@
+/* ====================
+   GLOBAL RESET
+==================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==================== SIDEBAR BASE =================== */
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 25vw; /* Sidebar width adjusted */
+  background-color: #008a3d;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2vh 0;
+  z-index: 1000;
+  transform: translateX(-100%);
+  opacity: 1;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes sidebarSlideIn {
+  0% {
+    transform: translateX(-100%) scaleX(0.9);
+    opacity: 0.5;
+  }
+  60% {
+    transform: translateX(10px) scaleX(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scaleX(1);
+  }
+}
+
+@keyframes sidebarSlideOut {
+  0% {
+    transform: translateX(0) scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%) scaleX(0.95);
+    opacity: 0.5;
+  }
+}
+
+/* Show and hide the sidebar */
+.side-nav.show-sidebar {
+  display: flex;
+  animation: sidebarSlideIn 0.45s ease-out forwards;
+}
+
+.side-nav.hide-sidebar {
+  animation: sidebarSlideOut 0.3s ease-in forwards;
+}
+
+.side-nav.collapsed {
+  animation: slideOutSidebar 0.4s ease forwards;
+}
+
+.side-nav.collapsed .nav-logo,
+.side-nav.collapsed .navigation,
+.side-nav.collapsed .widget {
+  display: none;
+}
+
+
+
+
+/* Extended Sidebar for expanded menu */
+.extended-sidebar {
+  display: none; /* Hide extended sidebar by default */
+  position: fixed;
+  top: 0;
+  left: 25vw;  /* Position next to the original sidebar */
+  width: 20vw;
+  background-color: white;  /* White background for extended sidebar */
+  z-index: 999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+  border-radius: 8px;
+  transition: left 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* When the sidebar is collapsed, ensure the extended sidebar is hidden */
+.side-nav.collapsed + .extended-sidebar {
+  display: none; /* Ensure extended sidebar is hidden when the main sidebar is collapsed */
+}
+
+/* Extended submenu style */
+.extended-menu {
+  display: none; /* Hide all submenus initially */
+  padding: 15px;
+  background-color: white;
+  color: green;
+  border-radius: 8px;
+  margin-top: 10px;
+  overflow-y: auto;  /* Enable vertical scrolling */
+  max-height: 117vh;  /* Set a maximum height for the submenu container */
+  flex-grow: 1;  /* Allow the menu to grow and take up space in the extended sidebar */
+}
+
+/* Styling for each submenu item */
+.submenu-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s ease; /* Add smooth hover transition */
+}
+
+/* Hover effect for each submenu item */
+.submenu-item:hover {
+  background-color: #008a3d;
+  transform: scale(1.05);
+  color: #ffffff;
+}
+
+/* Styling for submenu titles */
+.submenu-title {
+  font-size: 1.5rem;
+  color: #008a3d;
+  margin-bottom: 10px;
+}
+
+/* Divider for separating the East and West sections */
+.divider {
+  width: 60%; /* Limit the width of the line */
+  height: 2px; /* Thickness of the line */
+  background-color: rgba(0, 0, 0, 0.1); /* Softer color for separator */
+  margin-bottom: 10px;
+}
+
+
+
+/* ====================
+   LATCH BUTTON
+==================== */
+/* Floating Hamburger Button Styling */
+#sidebar-latch {
+  position: fixed; /* Fixed position on the screen */
+  left: 15px; /* Space from the left */
+  background: white; /* Green background */
+  color: #008a3d; /* White icon color */
+  width: 60px; /* Width of the button */
+  height: 60px; /* Height of the button */
+  display: none; /* Flex to center the icon */
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  z-index: 9999; /* Make sure it's on top of other elements */
+  border: none; /* Remove default border */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition on hover */
+   /* Default glow effect even when not hovered */
+   box-shadow: 0 0 30px rgba(0, 255, 0, 0.8); /* Subtle green glow */
+}
+
+#sidebar-latch img {
+  width: 5vh; /* Adjust the image size */
+  height: 5vh; /* Adjust the image size */
+  filter: brightness(0) saturate(100%) invert(24%) sepia(99%) saturate(812%) hue-rotate(103deg) brightness(90%) contrast(95%); /* Green icon on hover */
+}
+
+#sidebar-latch:hover img {
+  filter: brightness(0) invert(1); /* White icon initially */
+
+}
+
+
+#sidebar-latch:hover {
+  background-color: #008a3d; /* Lighter green background on hover */
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4); /* Add a subtle glow effect on hover */
+}
+
+body.tour-in-progress #sidebar-latch {
+  display: flex; /* ✅ show only after tour starts */
+  top: 3vh; /* Space from the top */
+
+}
+
+
+/* ====================
+   CLOSE (X) BUTTON
+==================== */
+/* Close (X) Button */
+.close-btn {
+  position: absolute;
+  top: 3vh;
+  right: 20px;
+  width: 60px; /* Width of the button */
+  height: 60px; /* Height of the button */
+  background-color: #008a3d; /* Green background */
+  color: white;
+  border-radius: 8px; /* Rounded corners */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  z-index: 1000; /* Ensures logo is above other elements */
+}
+
+.close-btn img {
+  width: 5vh; /* Icon size */
+  height: 5vh;
+  filter: brightness(0) invert(1); /* White icon initially */
+}
+
+.close-btn:hover {
+  background-color: white; /* Lighter green background on hover */
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4); /* Add a subtle glow effect on hover */
+}
+
+.close-btn:hover img {
+  filter: brightness(0) saturate(100%) invert(24%) sepia(99%) saturate(812%) hue-rotate(103deg) brightness(90%) contrast(95%); /* Green icon on hover */
+}
+
+
+
+/* ==================== LOGO AND NAVIGATION =================== */
+/* Logo container */
+.nav-logo {
+  text-align: center;
+  position: fixed;
+  padding-top: 18px;
+  padding-bottom: 35px;
+  width: 100%;
+  top: 0; /* Make sure logo is at the top */
+}
+
+
+.line-separator {
+  width: 60%; /* Limit the width of the line */
+  height: 2px; /* Thickness of the line */
+  background-color: rgba(255, 255, 255, 0.3); /* Softer white color with opacity */
+  margin: 31vh;  /* Center the line */
+}
+
+/* Logo image */
+.nav-logo img {
+  width: 30%;
+  margin: 0 auto 10px;
+  display: block;
+}
+
+.nav-logo h2 {
+  font-family: 'Gupter', serif;
+  font-size: 3.5vh;
+  color: white;
+}
+.nav-logo p {
+  font-family: 'Grenze', serif;
+  font-size: 2vh;
+  font-weight: 300;
+  color: white;
+}
+
+/* ==================== NAVIGATION AREA =================== */
+ .nav-item-container {
+  position: absolute; /* Position container to center in the sidebar */
+  top: 31vh; /* Position it slightly below the logo */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Offset to center exactly */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between items */
+  padding: 40px 0px;
+  width: 100%; /* Limit width for better layout */
+}
+
+.nav-item {
+  padding: 12px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 7vw;
+  gap: 10px;
+  transition: background-color 0.3s, transform 0.3s ease; /* Smooth transitions */
+}
+
+.nav-item p {
+  font-family: 'Gupter', serif;
+  font-size: 1.8rem;
+  color: white;
+  margin: 0;
+}
+
+/* Styling for the icons */
+.nav-icon {
+  width: 30px; /* Adjust the icon size */
+  height: 30px; /* Adjust the icon size */
+  filter: brightness(0) invert(1); /* White icon initially */
+}
+
+.nav-item:hover {
+  background-color: white;
+  transform: scale(1);
+}
+
+.nav-item:hover p {
+  color: #008a3d;
+}
+
+.nav-item:hover .nav-icon {
+  filter: brightness(0) saturate(100%) invert(24%) sepia(99%) saturate(812%) hue-rotate(103deg) brightness(90%) contrast(95%); /* Green icon on hover */
+}
+
+/* Active state for clicked navigation item */
+.nav-item.active {
+  background-color: white; /* White background for active item */
+  color: #008a3d; /* Green text color for active item */
+}
+
+.nav-item.active p {
+  color: #008a3d; /* Green text color */
+}
+
+.nav-item.active .nav-icon {
+  filter: brightness(0) saturate(100%) invert(24%) sepia(99%) saturate(812%) hue-rotate(103deg) brightness(90%) contrast(95%); /* Green icon for active item */
+}
+
+
+
+/* ==================== BUTTON CONTAINER STYLE =================== */
+/* Button Container */
+.sidebar-buttons {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 10px;
+  padding: 10px;
+  width: 100%; /* Make sure the container takes the full width */
+  /* For centering the buttons vertically */
+  justify-content: center; /* Vertically center the buttons */
+  align-items: center; /* Horizontally center the buttons */
+  height: 100%; /* Ensure the buttons fill the height of their parent container */
+}
+
+/* Button Style (circles and side by side) */
+.function-buttons {
+  display: flex;
+  justify-content: center;  /* Center the buttons horizontally */
+  align-items: center;
+  gap: 40px;  /* Space between buttons */
+  flex-wrap: wrap;  /* Allow buttons to wrap if necessary */
+  position: relative;
+  width: 100%; /* Full width */
+}
+
+/* Styling individual buttons */
+.function-btn {
+  background-color: #00703C;  /* Green background */
+  border-radius: 50%; /* Make them circular */
+  border: 4px solid #ffffff; /* White border */
+  width: 60px;  /* Button size */
+  height: 60px;  /* Button size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; /* Pointer on hover */
+  transition: transform 0.3s, background-color 0.3s ease;
+}
+
+/* Hover effect for buttons */
+.function-btn:hover {
+  background-color: #ffffff; /* Lighter green on hover */
+  transform: scale(1.1); /* Slightly increase the size */
+  border: 4px solid #00703C; /* White border */
+}
+
+/* Image inside the button */
+.function-btn img {
+  width: 30px; /* Icon size */
+  height: 30px; /* Icon size */
+  filter: brightness(0) invert(1); /* White icons by default */
+  transition: filter 0.3s ease; /* Smooth transition for icon color */
+}
+
+.function-btn:hover img {
+  filter: brightness(0) saturate(100%) invert(24%) sepia(99%) saturate(812%) hue-rotate(103deg) brightness(90%) contrast(95%); /* Green icon for active item */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==================== FOOTER WIDGET =================== */
+.widget {
+  position: fixed; /* Fixes the position */
+  bottom: 3vh; /* Keeps the widget at the bottom of the sidebar */
+  padding: 10px 10px;
+  width: 100%; /* Ensures it spans the full width of the sidebar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+.widget img {
+  height: 24px;
+  margin-right: 10px;
+}
+
+.widget p {
+  font-family: 'Caveat', cursive;
+  color: white;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+
+/* ==================== MEDIA QUERIES =================== */
+.side-nav {
+  zoom: 1;
+}
+.nav-logo {
+  padding-top: 50px;
+}
+.function-btn {
+  width: 80px;  /* Button size */
+  height: 80px;  /* Button size */
+}
+.function-btn img {
+  width: 45px; /* Icon size */
+  height: 45px; /* Icon size */
+}
+.nav-item p {
+  font-size: 2.3rem;
+}
+.extended-menu {
+  max-height: 99vh;  /* Set a maximum height for the submenu container */
+  padding-left: 25px;
+}
+.extended-sidebar {
+  width: 18vw;
+  left: 21.9vw;  /* Position next to the original sidebar */
+}
+.side-nav {
+  width: 22vw; /* Sidebar width adjusted */
+}
+.nav-item {
+  padding-left: 5.7vw;
+}
+.nav-logo img {
+  width: 35%;
+}
+.nav-logo {
+  padding-top: 70px; 
+}
+.line-separator {
+  margin: 28vh;  /* Center the line */
+}
+
+
+
+@media (max-height: 1000px) {
+  .side-nav {
+    zoom: 0.96;
+  }
+  .function-btn {
+    width: 70px;  /* Button size */
+    height: 70px;  /* Button size */
+  }
+  .function-btn img {
+    width: 40px; /* Icon size */
+    height: 40px; /* Icon size */
+  }
+  .nav-item {
+    padding-left: 6.2vw;
+  }
+  .side-nav {
+    width: 22vw; /* Sidebar width adjusted */
+  }
+.nav-logo {
+  padding-top: 50px;
+  
+}
+.nav-logo img {
+  width: 35%;
+}
+.line-separator {
+  margin: 30vh;  /* Center the line */
+}
+.extended-sidebar {
+  left: 21.9vw;  /* Position next to the original sidebar */
+}
+.extended-menu {
+  max-height: 103vh;  /* Set a maximum height for the submenu container */
+  padding-left: 25px;
+}
+.nav-item p {
+  font-size: 2rem;
+}
+
+  
+  
+
+}
+@media (max-height: 900px) {
+  .side-nav {
+    zoom: 0.9;
+  }
+  .nav-logo img {
+    width: 35%;
+  }
+  .extended-sidebar {
+    left: 21.9vw;  /* Position next to the original sidebar */
+    width: 21vw;
+  }
+  .extended-menu {
+    max-height: 110vh;  /* Set a maximum height for the submenu container */
+    padding-left: 25px;
+  }
+  .nav-item {
+    padding-left: 5vw;
+  }
+  .nav-logo img {
+    width: 40%;
+  }
+  
+  
+  
+  
+}
+@media (max-height: 800px) {
+  .side-nav {
+    zoom: 0.87;
+  }
+  .widget {
+    padding: 10px 0;
+  }
+  .line-separator {
+    margin: 35vh;  /* Center the line */
+  }
+  .nav-logo img {
+    width: 38%;
+  }
+  .nav-item p {
+    font-size: 1.7rem;
+  }
+  .nav-item-container {
+    top: 35vh; /* Position it slightly below the logo */
+  }
+  .nav-item {
+    padding-left: 5.5vw;
+  }
+  .line-separator {
+    margin: 35vh;  /* Center the line */
+  }
+  .extended-menu {
+    max-height: 116vh;  /* Set a maximum height for the submenu container */
+    padding-left: 25px;
+  }
+  .extended-sidebar {
+    left: 21.9vw;  /* Position next to the original sidebar */
+    width: 20vw;
+  }
+  .nav-logo h2 {
+    font-size: 3.8vh;
+  }
+  .nav-logo p {
+    font-size: 2.1vh;
+  }
+  .function-btn {
+    width: 60px;  /* Button size */
+    height: 60px;  /* Button size */
+  }
+  .function-btn img {
+    width: 30px; /* Icon size */
+    height: 30px; /* Icon size */
+  }
+  
+  
+  
+}
+@media (max-height: 700px) {
+  .side-nav {
+    zoom: 0.85;
+  }
+  #sidebar-latch {
+    zoom: 0.85;
+  }
+  .widget {
+    padding: 10px 0;
+  }
+  
+  
+  
+}
+
+
+
+/* Overlay for video */
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Video container */
+.video-container {
+  position: relative;
+  width: 90vw;      /* Width of the container */
+  max-width: 72vw;  /* Limit how wide it gets */
+  height: 80vh;     /* Responsive height */
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Make video fill the container */
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+
+/* When the video is playing, show overlay */
+.video-overlay.show {
+  display: flex;
+}
+
+
