@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigate La Salle</title>
+
+    <!--FONT-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Grenze:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Gupter:wght@400;500;700&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Include Font Awesome in the head -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Latch button (must come AFTER the sidebar for the + selector) -->
+    <div id="sidebar-latch" onclick="toggleNav()">
+      <img src="Images/INFO/open left-icon.png" alt="Open Sidebar" />
+    </div>
+
+    <!-- Video Modal/Overlay -->
+    <div id="video-overlay" class="video-overlay">
+      <button id="close-video-btn" class="close-btn">
+        <img src="Images/INFO/close-icon.png" alt="Close" />
+      </button>
+      <div class="video-container">
+        <video id="video-player" controls>
+          <source src="./VIDEOS/DLSU-D Campus Tour.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <!-- Sidebar for Virtual Tour -->
+    <div class="side-nav collapsed" id="side-nav">
+      <!-- Close (X) Button -->
+      <button id="close-sidebar" class="close-btn" onclick="toggleNav()">
+        <img src="Images/INFO/close right-icon.png" alt="Close Sidebar" />
+      </button>
+
+      <!-- Logo and Info -->
+      <div class="nav-logo">
+        <img src="./Logos/DLSUD logo 1.png" class="logo" />
+        <h2>NAVIGATE LA SALLE</h2>
+        <p>Virtual Tour of DLSU-D Campus</p>
+      </div>
+
+      <div class="line-separator"></div>
+      <!-- Custom line -->
+
+      <!-- Navigation Menu -->
+      <div class="navigation-groups">
+        <div class="nav-item-container">
+          <div
+            class="nav-item"
+            id="buildings"
+            onclick="toggleSubmenu('buildings')"
+          >
+            <img
+              src="Images/INFO/building.png"
+              alt="Building Icon"
+              class="nav-icon"
+            />
+            <p>Buildings</p>
+          </div>
+          <div
+            class="nav-item"
+            id="facilities"
+            onclick="toggleSubmenu('facilities')"
+          >
+            <img
+              src="Images/INFO/FC.png"
+              alt="Facilities Icon"
+              class="nav-icon"
+            />
+            <p>Facilities</p>
+          </div>
+          <div
+            class="nav-item"
+            id="landmarks"
+            onclick="toggleSubmenu('landmarks')"
+          >
+            <img
+              src="Images/INFO/LM.png"
+              alt="Landmarks Icon"
+              class="nav-icon"
+            />
+            <p>Landmarks</p>
+          </div>
+          <div class="nav-item" id="parking" onclick="toggleSubmenu('parking')">
+            <img src="Images/INFO/PK.png" alt="Parking Icon" class="nav-icon" />
+            <p>Parking</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submenus (hidden by default) -->
+      <div class="extended-sidebar">
+        <!-- Buildings Submenu -->
+        <div class="extended-menu" id="buildings-submenu" style="display: none">
+          <h3 class="submenu-title">East</h3>
+          <div class="divider"></div>
+          <div class="submenu-item" data-node="JFH">Julian Felipe Hall</div>
+          <div class="submenu-item" data-node="TJF">
+            Tanghalang Julian Felipe
+          </div>
+          <div class="submenu-item" data-node="PCH">Paulo Campos Hall</div>
+          <div class="submenu-item" data-node="LCDC">
+            Lasallian Community Development Center
+          </div>
+          <div class="submenu-item" data-node="COS">College of Science</div>
+          <div class="submenu-item" data-node="ADG">
+            Ayuntamiento de Gonzales
+          </div>
+          <div class="submenu-item" data-node="SDLAH">
+            Severino de Las Alas Hall (Alumni Bldg)
+          </div>
+          <div class="submenu-item" data-node="ICTC">
+            Information and Communications Technology Center (ICTC)
+          </div>
+          <div class="submenu-item" data-node="LPDSB">
+            La Porteria de San Benildo (LPDSB)
+          </div>
+          <div class="submenu-item" data-node="Lake Avenue (1)">
+            Mariano Alvarez Hall
+          </div>
+          <div class="submenu-item" data-node="Lake Avenue (2)">
+            College of Tourism and Hospitality Management (CTHM)
+          </div>
+          <div class="submenu-item" data-node="AEA">
+            Aklatang Emilio Aguinaldo (AEA)
+          </div>
+
+          <br />
+
+          <h3 class="submenu-title">West</h3>
+          <div class="divider"></div>
+          <div class="submenu-item" data-node="CTH">Candido Tirona Hall</div>
+          <div class="submenu-item" data-node="FCH (1)">
+            Felipe Calderon Hall
+          </div>
+          <div class="submenu-item" data-node="GS (1)">Grandstand</div>
+          <div class="submenu-item" data-node="LDH (1)">Ladislao Diwa Hall</div>
+          <div class="submenu-item" data-node="MTH">Mariano Trias Hall</div>
+          <div class="submenu-item" data-node="VBH">Vito Belarmino Hall</div>
+          <div class="submenu-item" data-node="CBAA">
+            College of Business Administration and Accountancy (CBAA)
+          </div>
+          <div class="submenu-item" data-node="CEAT">
+            College of Engineering, Architecture, and Technology (CEAT)
+          </div>
+          <div class="submenu-item" data-node="AL (3)">
+            Gregoria Montoya Hall (GMH)
+          </div>
+          <div class="submenu-item" data-node="West Avenue (8)">
+            Santiago Alvarez Hall (SAH)
+          </div>
+          <div class="submenu-item" data-node="Acacia Avenue (1)">
+            Francisco Barzaga Hall (POLCA Office)
+          </div>
+          <div class="submenu-item" data-node="HS (2)">
+            DLSU-D High School Complex
+          </div>
+        </div>
+
+        <!-- Facilities Submenu -->
+        <div
+          class="extended-menu"
+          id="facilities-submenu"
+          style="display: none"
+        >
+          <h3 class="submenu-title">East</h3>
+          <div class="divider"></div>
+          <div class="submenu-item" data-node="HR">Hotel Rafael</div>
+          <div class="submenu-item" data-node="Diner">Mila's Diner</div>
+          <div class="submenu-item" data-node="CM">Café Museo</div>
+          <div class="submenu-item" data-node="UFS">
+            University Food Square (UFS)
+          </div>
+          <div class="submenu-item" data-node="LMDC">
+            Ladies' and Men's Dormitory Complex (LMDC)
+          </div>
+          <div class="submenu-item" data-node="Gate 4 Way (6)">
+            Residencia San Miguel (RSM)
+          </div>
+          <div class="submenu-item" data-node="Gate 4">
+            Motor Pool (Transportation Bldg.)
+          </div>
+          <div class="submenu-item" data-node="AEA Road (2)">
+            Electronic Resource Center (ERC)
+          </div>
+
+          <br />
+
+          <h3 class="submenu-title">West</h3>
+          <div class="divider"></div>
+          <div class="submenu-item" data-node="BPA">Bahay Pag-asa</div>
+          <div class="submenu-item" data-node="Pool">
+            University Olympic Size Swimming Pool
+          </div>
+          <div class="submenu-item" data-node="RCC">
+            Retreat & Conference Center (RCC)
+          </div>
+          <div class="submenu-item" data-node="ULS">
+            Ugnayang La Salle (ULS)
+          </div>
+          <div class="submenu-item" data-node="West Avenue (12)">
+            Security Office
+          </div>
+          <div class="submenu-item" data-node="Acacia Avenue (4)">
+            Kabalikat ng DLSU-D (KND)
+          </div>
+        </div>
+
+        <!-- Landmarks Submenu -->
+        <div class="extended-menu" id="landmarks-submenu" style="display: none">
+          <h3 class="submenu-title">East</h3>
+          <div class="divider"></div>
+          <div class="submenu-item" data-node="Rotunda(front)">
+            Statue of St. John Baptist de La Salle
+          </div>
+          <div class="submenu-item" data-node="SS">Study Shed (Kubo)</div>
+          <div class="submenu-item" data-node="LB">Lumina Bridge</div>
+          <div class="submenu-item" data-node="LP">Lake Park</div>
+          <div class="submenu-item" data-node="Lake Avenue (7)">
+            Botanical Garden
+          </div>
+          <div class="submenu-item" data-node="Lake Avenue (7)">
+            Br. Gus Boquer FSC Cultural Heritage Complex
+          </div>
+          <div class="submenu-item" data-node="Fountain (1)">Fountain</div>
+          <div class="submenu-item" data-node="Batibot">Batibot</div>
+          <div class="submenu-item" data-node="MDLS">Museo de La Salle</div>
+          <div class="submenu-item" data-node="Chapel">
+            Antonio & Victoria Cojuangco Memorial Chapel of Our Lady of the Holy
+            Rosary
+          </div>
+
+          <br />
+
+          <h3 class="submenu-title">West</h3>
+          <div class="divider"></div>
+          <div class="submenu-item" data-node="Oval (Mid)">Track and Oval</div>
+          <div class="submenu-item" data-node="Oval Road (7)">
+            University Events Center
+          </div>
+        </div>
+
+        <!-- Parking Submenu -->
+        <div class="extended-menu" id="parking-submenu" style="display: none">
+          <h3 class="submenu-title">East</h3>
+          <div class="divider"></div>
+          <div class="submenu-item" data-node="COS Parking">
+            College of Science Parking
+          </div>
+          <div class="submenu-item" data-node="G2 Parking (2)">
+            ICTC Parking (beside Gate 1 and La Porteria De San Benildo)
+          </div>
+          <div class="submenu-item" data-node="G4 Parking (1)">
+            JFH-PCH Parking (beside Gate 1 and Gate 4)
+          </div>
+          <div class="submenu-item" data-node="Chapel Parking">
+            Chapel Parking (beside Chapel)
+          </div>
+
+          <br />
+
+          <h3 class="submenu-title">West</h3>
+          <div class="divider"></div>
+          <div class="submenu-item" data-node="ULS Parking (1)">
+            Ugnayang La Salle Parking
+          </div>
+          <div class="submenu-item" data-node="PCCA Parking (1)">
+            PC Campos Avenue Parking (beside POLCA Office)
+          </div>
+          <div class="submenu-item" data-node="OU Parking (1)">
+            Oval-ULS Parking (between Oval and ULS)
+          </div>
+          <div class="submenu-item" data-node="GS Parking">
+            Grandstand Parking
+          </div>
+          <div class="submenu-item" data-node="GMH Parking">
+            Gregoria Montoya Hall Parking
+          </div>
+          <div class="submenu-item" data-node="CM Parking (1)">
+            CBAA-MTH Parking (between Oval and CBAA-MTH buildings)
+          </div>
+        </div>
+      </div>
+
+      <!-- New Buttons Section -->
+      <div class="sidebar-buttons">
+        <div class="function-buttons">
+          <button
+            id="narrative-btn"
+            class="info-btn function-btn"
+            title="Audio"
+          >
+            <img src="Images/INFO/narrative.png" alt="Audio" />
+          </button>
+          <button id="video-btn" class="info-btn function-btn" title="Video">
+            <img src="Images/INFO/video-icon.png" alt="Video" />
+          </button>
+          <button
+            id="music-btn"
+            class="info-btn function-btn"
+            title="Ambiance-Music"
+          >
+            <img src="Images/INFO/music.png" alt="Music" />
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="widget"
+        id="go-back"
+        onclick="window.location.href='../user_dashboard.html'"
+      >
+        <img class="icon" src="./ICONS/icons-dashboard-alt.png" />
+        <p>Dashboard</p>
+      </div>
+    </div>
+
+    <script>
+      function toggleNav() {
+        const sideNav = document.getElementById("side-nav");
+        const latch = document.getElementById("sidebar-latch");
+        const icon = latch.querySelector("img");
+        const extendedSidebar = document.querySelector(".extended-sidebar"); // Get the extended sidebar
+
+        const isCollapsed = sideNav.classList.contains("collapsed");
+
+        if (isCollapsed) {
+          // Open sidebar
+          sideNav.classList.remove("collapsed");
+          sideNav.classList.remove("hide-sidebar");
+          sideNav.classList.add("show-sidebar");
+
+          latch.style.display = "none"; // 👈 hide latch when open
+
+          icon.classList.remove("img");
+          icon.classList.add("fa-chevron-left");
+        } else {
+          // Close sidebar with animation
+          sideNav.classList.remove("show-sidebar");
+          sideNav.classList.add("hide-sidebar");
+
+          icon.classList.remove("fa-chevron-left");
+          icon.classList.add("img");
+
+          // After animation ends, collapse + show latch again
+          setTimeout(() => {
+            sideNav.classList.remove("hide-sidebar");
+            sideNav.classList.add("collapsed");
+
+            // 👇 Show latch ONLY if tour is running
+            if (document.body.classList.contains("tour-in-progress")) {
+              latch.style.display = "flex";
+            }
+
+            // Hide extended sidebar when closing the main sidebar
+            extendedSidebar.style.display = "none";
+
+            // Close all submenus when sidebar is collapsed
+            const allSubmenus = document.querySelectorAll(".extended-menu");
+            allSubmenus.forEach((submenu) => {
+              submenu.style.display = "none"; // Hide all submenus when sidebar is collapsed
+            });
+
+            // Remove active class from all nav items
+            const navItems = document.querySelectorAll(".nav-item");
+            navItems.forEach((item) => {
+              item.classList.remove("active");
+            });
+          }, 400); // match your CSS animation duration
+        }
+      }
+
+      // Function to toggle visibility of submenus
+      function toggleSubmenu(section) {
+        const submenu = document.getElementById(`${section}-submenu`);
+        const extendedSidebar = document.querySelector(".extended-sidebar");
+
+        if (!submenu) {
+          console.warn(`Submenu for ${section} not found`);
+          return; // If the submenu doesn't exist, stop execution
+        }
+
+        // Show the extended sidebar if it's not already visible
+        extendedSidebar.style.display = "flex"; // Ensure the extended sidebar is shown
+
+        // Check if the clicked submenu is already visible
+        if (submenu.style.display === "block") {
+          // If it's already visible, hide it
+          submenu.style.display = "none";
+          // Remove the active class from the clicked nav-item
+          const clickedItem = document.getElementById(section);
+          if (clickedItem) {
+            clickedItem.classList.remove("active");
+          }
+        } else {
+          // Otherwise, show the submenu and hide all others
+          const allSubmenus = document.querySelectorAll(".extended-menu");
+          allSubmenus.forEach((item) => {
+            item.style.display = "none"; // Hide all submenus
+          });
+
+          submenu.style.display = "block"; // Show the clicked submenu
+
+          // Ensure only the clicked navigation item remains active
+          const navItems = document.querySelectorAll(".nav-item");
+          navItems.forEach((item) => {
+            item.classList.remove("active"); // Remove active class from all items
+          });
+
+          // Add the active class to the clicked item
+          const clickedItem = document.getElementById(section);
+          if (clickedItem) {
+            clickedItem.classList.add("active"); // Add active class to the clicked item
+          }
+        }
+      }
+
+      // This will keep the sidebar open and only toggle the submenus.
+      document.querySelectorAll(".nav-item").forEach((item) => {
+        item.addEventListener("click", (event) => {
+          const nodeId = item.getAttribute("data-node");
+          const virtualTour = viewer.getPlugin(VirtualTourPlugin);
+
+          // Prevent the panorama logic from interfering with submenu functionality
+          event.stopPropagation();
+
+          // If you want to use nodeId for panorama, you can keep that as is.
+          if (nodeId) {
+            virtualTour.setCurrentNode(nodeId);
+          }
+
+          // You can call the toggleSubmenu function here to open the corresponding submenu
+          toggleSubmenu(item.id);
+        });
+      });
+
+      // Trigger tour mode
+      document.addEventListener("DOMContentLoaded", () => {
+        const startBtn = document.getElementById("start-tour-btn");
+        if (startBtn) {
+          startBtn.addEventListener("click", () => {
+            document.body.classList.add("tour-started");
+
+            const sideNav = document.getElementById("side-nav");
+            sideNav.classList.add("collapsed");
+            sideNav.classList.add("show-sidebar");
+
+            const icon = document.querySelector("#sidebar-latch i");
+            icon.classList.remove("fa-chevron-left");
+            icon.classList.add("img");
+          });
+        }
+      });
+    </script>
+
+    <div id="welcome-box" class="welcome-overlay" style="display: none">
+      <div class="welcome-content">
+        <img
+          src="./Logos/DLSUD logo 2.png"
+          alt="DLSU-D Logo"
+          class="welcome-logo"
+        />
+        <h1>Welcome to Navigate La Salle</h1>
+        <h3>Explore the DLSU-D Campus in 360°</h3>
+        <p>
+          Use this virtual tour to explore the De La Salle University -
+          Dasmariñas campus from anywhere. Click on the markers to move between
+          locations and discover our beautiful grounds and facilities.
+        </p>
+        <button id="start-tour-btn">Start Tour</button>
+      </div>
+    </div>
+
+    <!-- Viewer Container -->
+    <div id="viewer"></div>
+    <script type="module" src="/src/u_virtual_tour.js"></script>
+    <!-- Vite uses /src path by default -->
+
+    <!-- Building Info Modal -->
+    <div
+      id="building-info-box"
+      class="welcome-overlay"
+      style="display: none; opacity: 0; visibility: hidden"
+    >
+      <div class="welcome-content building-info-content">
+        <h2 id="building-info-title"></h2>
+        <p class="indented" id="building-info-desc"></p>
+
+        <!-- Button container -->
+        <div class="button-container">
+          <!-- Left aligned buttons -->
+          <div class="info-buttons">
+            <button id="view-gallery-btn" title="View Gallery">
+              <img src="Images/INFO/images-btn.png" alt="Gallery" />
+            </button>
+            <!-- Audio Button -->
+            <button id="audio-btn" title="Toggle Audio">
+              <img src="Images/INFO/audio-icon.png" alt="Audio Button" />
+            </button>
+          </div>
+
+          <div class="close-btn-container">
+            <button id="building-info-close">
+              <img src="Images/INFO/close-icon.png" alt="Close" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="gallery-modal" class="welcome-overlay" style="display: none">
+      <div class="welcome-content gallery-content">
+        <div id="gallery-slider">
+          <button class="nav-button" id="prev-image">&#10094;</button>
+          <img id="gallery-current-img" src="" alt="Gallery Image" />
+          <button class="nav-button" id="next-image">&#10095;</button>
+        </div>
+        <div id="gallery-images"></div>
+        <button id="close-gallery" class="close-gallery-btn">Close</button>
+      </div>
+    </div>
+  </body>
+</html>
