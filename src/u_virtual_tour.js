@@ -14301,7 +14301,7 @@ markersPlugin.addEventListener("select-marker", ({ marker }) => {
 
       [
         "./Images/INFO/WEST/Establishments/RCC.webp",
-        "./Images/INFO/WEST/Establishments/RCC 1.jpg",
+        "./Images/INFO/WEST/Establishments/RCC 1.webp",
       ],
       "./AUDIOS/WEST/Establishments/RCC.mp3"
     );
