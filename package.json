@@ -14,13 +14,13 @@
   "author": "Evan Nietes",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.2.1",
     "@photo-sphere-viewer/autorotate-plugin": "^5.13.1",
     "@photo-sphere-viewer/core": "^5.13.1",
     "@photo-sphere-viewer/markers-plugin": "^5.13.1",
-    "@photo-sphere-viewer/virtual-tour-plugin": "^5.13.1"
+    "@photo-sphere-viewer/virtual-tour-plugin": "^5.13.1",
+    "express": "^5.2.1"
   },
   "devDependencies": {
-    "vite": "^5.4.9"
+    "vite": "^5.4.21"
   }
 }
