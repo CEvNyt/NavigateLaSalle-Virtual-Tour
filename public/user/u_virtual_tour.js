@@ -5,9 +5,9 @@ import { AutorotatePlugin } from "@photo-sphere-viewer/autorotate-plugin";
 import "@photo-sphere-viewer/core/index.css";
 import "@photo-sphere-viewer/markers-plugin/index.css";
 import "@photo-sphere-viewer/virtual-tour-plugin/index.css";
-import "/src/css/u_virtual_tour.css";
-import "/src/css/u_info_modal.css";
-import "/src/css/u_sidebar.css";
+import "/user/css/u_virtual_tour.css";
+import "/user/css/u_info_modal.css";
+import "/user/css/u_sidebar.css";
 
 const baseUrl = "https://photo-sphere-viewer-data.netlify.app/assets/";
 
