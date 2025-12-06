@@ -30,7 +30,7 @@
     "type": "git",
     "url": "git+https://github.com/CEvNyt/NavigateLaSalle-Virtual-Tour.git"
   },
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/CEvNyt/NavigateLaSalle-Virtual-Tour/issues"
   },
