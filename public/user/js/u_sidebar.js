@@ -1,32 +1,36 @@
-function toggleNav() {
-  const sideNav = document.getElementById("side-nav");
-  const latch = document.getElementById("sidebar-latch");
-  const icon = latch.querySelector("img");
-  const extendedSidebar = document.querySelector(".extended-sidebar"); // Get the extended sidebar
+  import { VirtualTourPlugin } from "@photo-sphere-viewer/virtual-tour-plugin";
+  import { viewer } from "./u_virtual_tour.js";
 
-  const isCollapsed = sideNav.classList.contains("collapsed");
 
-  if (isCollapsed) {
-    // Open sidebar
-    sideNav.classList.remove("collapsed");
-    sideNav.classList.remove("hide-sidebar");
-    sideNav.classList.add("show-sidebar");
+  function toggleNav() {
+    const sideNav = document.getElementById("side-nav");
+    const latch = document.getElementById("sidebar-latch");
+    const icon = latch.querySelector("img");
+    const extendedSidebar = document.querySelector(".extended-sidebar"); // Get the extended sidebar
 
-    latch.style.display = "none"; // 👈 hide latch when open
+    const isCollapsed = sideNav.classList.contains("collapsed");
 
-    icon.classList.remove("img");
-    icon.classList.add("fa-chevron-left");
-  } else {
-    // Close sidebar with animation
-    sideNav.classList.remove("show-sidebar");
-    sideNav.classList.add("hide-sidebar");
-
-    icon.classList.remove("fa-chevron-left");
-    icon.classList.add("img");
-
-    // After animation ends, collapse + show latch again
-    setTimeout(() => {
+    if (isCollapsed) {
+      // Open sidebar
+      sideNav.classList.remove("collapsed");
       sideNav.classList.remove("hide-sidebar");
+      sideNav.classList.add("show-sidebar");
+
+      latch.style.display = "none"; // 👈 hide latch when open
+
+      icon.classList.remove("img");
+      icon.classList.add("fa-chevron-left");
+    } else {
+      // Close sidebar with animation
+      sideNav.classList.remove("show-sidebar");
+      sideNav.classList.add("hide-sidebar");
+
+      icon.classList.remove("fa-chevron-left");
+      icon.classList.add("img");
+
+      // After animation ends, collapse + show latch again
+      setTimeout(() => {
+        sideNav.classList.remove("hide-sidebar");
       sideNav.classList.add("collapsed");
 
       // 👇 Show latch ONLY if tour is running

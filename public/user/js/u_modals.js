@@ -1,3 +1,7 @@
+import { viewer } from "./u_virtual_tour.js";
+
+
+
 // Trigger tour mode
 document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("start-tour-btn");

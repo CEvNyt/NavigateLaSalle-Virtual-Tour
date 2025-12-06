@@ -174,43 +174,27 @@
 
         <div class="divider"></div>
 
-        <div class="submenu-item" data-node="COS Parking">College of Science Parking</div>
-        <div class="submenu-item" data-node="G2 Parking (2)">
-          ICTC Parking (beside Gate 1 and La Porteria De San Benildo)
-        </div>
-        <div class="submenu-item" data-node="G4 Parking (1)">
-          JFH-PCH Parking (beside Gate 1 and Gate 4)
-        </div>
-        <div class="submenu-item" data-node="Chapel Parking">
-          Chapel Parking (beside Chapel)
-        </div>
+        <div class="submenu-item" data-node="COS Parking">COS-ADG Parking</div>
+        <div class="submenu-item" data-node="G2 Parking (2)">G1-G2 Parking</div>
+        <div class="submenu-item" data-node="G4 Parking (1)">G1-G4 Parking</div>
+        <div class="submenu-item" data-node="Chapel Parking">Chapel Parking</div>
 
         <br />
 
         <h3 class="submenu-title">West</h3>
+
         <div class="divider"></div>
-        <div class="submenu-item" data-node="ULS Parking (1)">
-          Ugnayang La Salle Parking
-        </div>
-        <div class="submenu-item" data-node="PCCA Parking (1)">
-          PC Campos Avenue Parking (beside POLCA Office)
-        </div>
-        <div class="submenu-item" data-node="OU Parking (1)">
-          Oval-ULS Parking (between Oval and ULS)
-        </div>
-        <div class="submenu-item" data-node="GS Parking">
-          Grandstand Parking
-        </div>
-        <div class="submenu-item" data-node="GMH Parking">
-          Gregoria Montoya Hall Parking
-        </div>
-        <div class="submenu-item" data-node="CM Parking (1)">
-          CBAA-MTH Parking (between Oval and CBAA-MTH buildings)
-        </div>
+
+        <div class="submenu-item" data-node="ULS Parking (1)">ULS Parking</div>
+        <div class="submenu-item" data-node="PCCA Parking (1)">FBH Parking</div>
+        <div class="submenu-item" data-node="OU Parking (1)">Oval-ULS Parking</div>
+        <div class="submenu-item" data-node="GS Parking">GS Parking</div>
+        <div class="submenu-item" data-node="GMH Parking">GMH Parking</div>
+        <div class="submenu-item" data-node="CM Parking (1)">CBAA-MTH Parking</div>
       </div>
     </div>
 
-    <!-- New Buttons Section -->
+    <!-- Buttons Section -->
     <div class="sidebar-buttons">
       <div class="function-buttons">
         <button id="narrative-btn" class="info-btn function-btn" title="Audio">
@@ -221,26 +205,38 @@
           <img src="Images/INFO/video-icon.png" alt="Video" />
         </button>
 
-        <button
-          id="music-btn"
-          class="info-btn function-btn"
-          title="Ambiance-Music"
-        >
+        <button id="music-btn" class="info-btn function-btn" title="Ambiance-Music">
           <img src="Images/INFO/music.png" alt="Music" />
         </button>
       </div>
     </div>
 
-    <div
-      class="widget"
-      id="go-back"
-      onclick="window.location.href='../user_dashboard.html'"
-    >
-      <img class="icon" src="./ICONS/icons-dashboard-alt.png" />
+
+    <!-- Dashboard Connection -->
+    <div class="widget" id="go-back" onclick="window.location.href='/user/u_dashboard.html'">
+      <img class="icon" src="/public/assets/icons/dashboard.png" />
       <p>Dashboard</p>
     </div>
 
-    <!-- Video Modal/Overlay -->
+
+    <!-- MODALS -->
+
+    <!-- Welcome/Start Modal -->
+    <div id="welcome-box" class="welcome-overlay" style="display: none">
+      <div class="welcome-content">
+        <img src="./Logos/DLSUD logo 2.png" alt="DLSU-D Logo" class="welcome-logo"/>
+        <h1>Welcome to Navigate La Salle</h1>
+        <h3>Explore the DLSU-D Campus in 360°</h3>
+        <p>
+          Use this virtual tour to explore the De La Salle University -
+          Dasmariñas campus from anywhere. Click on the markers to move between
+          locations and discover our beautiful grounds and facilities.
+        </p>
+        <button id="start-tour-btn">Start Tour</button>
+      </div>
+    </div>
+
+    <!-- Video Modal -->
     <div id="video-overlay" class="video-overlay">
       <button id="close-video-btn" class="close-btn">
         <img src="Images/INFO/close-icon.png" alt="Close" />
@@ -253,37 +249,15 @@
       </div>
     </div>
 
-    <div id="welcome-box" class="welcome-overlay" style="display: none">
-      <div class="welcome-content">
-        <img
-          src="./Logos/DLSUD logo 2.png"
-          alt="DLSU-D Logo"
-          class="welcome-logo"
-        />
-        <h1>Welcome to Navigate La Salle</h1>
-        <h3>Explore the DLSU-D Campus in 360°</h3>
-        <p>
-          Use this virtual tour to explore the De La Salle University -
-          Dasmariñas campus from anywhere. Click on the markers to move between
-          locations and discover our beautiful grounds and facilities.
-        </p>
-        <button id="start-tour-btn">Start Tour</button>
-      </div>
-    </div>
-
     <!-- Building Info Modal -->
-    <div
-      id="building-info-box"
-      class="welcome-overlay"
-      style="display: none; opacity: 0; visibility: hidden"
-    >
+    <div id="building-info-box" class="welcome-overlay" style="display: none; opacity: 0; visibility: hidden">
       <div class="welcome-content building-info-content">
         <h2 id="building-info-title"></h2>
         <p class="indented" id="building-info-desc"></p>
 
         <!-- Button container -->
         <div class="button-container">
-          <!-- Left aligned buttons -->
+          <!-- Gallery Button -->
           <div class="info-buttons">
             <button id="view-gallery-btn" title="View Gallery">
               <img src="Images/INFO/images-btn.png" alt="Gallery" />
@@ -293,7 +267,7 @@
               <img src="Images/INFO/audio-icon.png" alt="Audio Button" />
             </button>
           </div>
-
+            <!-- Close Button -->
           <div class="close-btn-container">
             <button id="building-info-close">
               <img src="Images/INFO/close-icon.png" alt="Close" />
@@ -319,8 +293,8 @@
     <!-- Viewer Container -->
     <div id="viewer"></div>
 
-    <script type="module" src="/public/user/js/u_sidebar.js"></script>
-    <script type="module" src="/public/user/js/u_modals.js"></script>
-    <script type="module" src="/public/user/js/u_virtual_tour.js"></script>
+    <script type="module" src="./js/u_sidebar.js"></script>
+    <script type="module" src="./js/u_modals.js"></script>
+    <script type="module" src="./js/u_virtual_tour.js"></script>
   </body>
 </html>

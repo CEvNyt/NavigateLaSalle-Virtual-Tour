@@ -1,7 +1,7 @@
 {
   "name": "virtual-tour-test",
   "version": "1.0.0",
-  "description": "",
+  "description": "Virtual Tour of DLSU-D",
   "main": "main.js",
   "scripts": {
     "dev": "vite",
@@ -18,9 +18,21 @@
     "@photo-sphere-viewer/core": "^5.13.1",
     "@photo-sphere-viewer/markers-plugin": "^5.13.1",
     "@photo-sphere-viewer/virtual-tour-plugin": "^5.13.1",
-    "express": "^5.2.1"
+    "@supabase/supabase-js": "^2.86.2",
+    "express": "^5.2.1",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "vite": "^5.4.21"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CEvNyt/NavigateLaSalle-Virtual-Tour.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CEvNyt/NavigateLaSalle-Virtual-Tour/issues"
+  },
+  "homepage": "https://github.com/CEvNyt/NavigateLaSalle-Virtual-Tour#readme"
 }

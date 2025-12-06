@@ -5,9 +5,9 @@ import { AutorotatePlugin } from "@photo-sphere-viewer/autorotate-plugin";
 import "@photo-sphere-viewer/core/index.css";
 import "@photo-sphere-viewer/markers-plugin/index.css";
 import "@photo-sphere-viewer/virtual-tour-plugin/index.css";
-import "/user/css/u_virtual_tour.css";
-import "/user/css/u_info_modal.css";
-import "/user/css/u_sidebar.css";
+  import "../css/u_virtual_tour.css";
+  import "../css/u_modals.css";
+  import "../css/u_sidebar.css";
 
 const baseUrl = "https://photo-sphere-viewer-data.netlify.app/assets/";
 
@@ -15,7 +15,7 @@ const baseUrl = "https://photo-sphere-viewer-data.netlify.app/assets/";
     Basic Viewer
    ===================== */
 
-const viewer = new Viewer({
+export const viewer = new Viewer({
   container: document.querySelector("#viewer"),
   loadingImg: "./Logos/DLSUD logo.gif",
   // ✅ SPEED IMPROVEMENTS
@@ -50,7 +50,7 @@ const viewer = new Viewer({
         moveInertia: true,
         startNodeId: "Start",
         nodes: [
-          /* =============================================================================== 
+  /* =============================================================================== 
    |                                                                             |
    |                      EAST SIDE OF THE UNIVERSITY                            | 
    |                                                                             | 
@@ -65,12 +65,12 @@ const viewer = new Viewer({
           },
 
           /* ================================================             
-                            GATES
+                               GATES
            ================================================ */
 
-          /* ========
-                      GATE 1
-                     ======== */
+          /* =============
+               GATE 1
+          ============= */
           {
             id: "Gate 1",
             panorama: "./Images/EAST/Gates/Gate 1.webp",
