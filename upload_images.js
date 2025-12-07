@@ -10,7 +10,7 @@ const BUCKET_NAME = "virtual-tour"; // The bucket you created
 
 // ==== 2. Local folder to upload ====
 // Local folder with your 360 images
-const localFolder = path.join(process.cwd(), "public/assets/images");
+const localFolder = path.join(process.cwd(), "public/assets");
 
 // ==== 3. Initialize client ====
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);

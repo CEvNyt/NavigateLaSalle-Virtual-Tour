@@ -13763,7 +13763,7 @@ markersPlugin.addEventListener("select-marker", ({ marker }) => {
        The Aklatang Emilio Aguinaldo-Information Resource Center is DLSU-D's main hub for 
        research and learning resources. The new building houses a vast collection of books, 
        journals, periodicals, and digital databases that support academic research and 
-       development. The old Aklatan, a replica of Emilio Aguinaldo's home in Kawit, Cavite, 
+       development. The old Aklatan, a replica of Emilio Agui naldo's home in Kawit, Cavite, 
        now serves as the Office of the President and houses the University's audiovisual 
        collection, including the Luis Aguado and Eugenio Cabeza viewing rooms for seminars 
        and screenings. The AEA-IRC fosters a dynamic and collaborative study environment for 
