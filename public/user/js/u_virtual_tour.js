@@ -1453,22 +1453,19 @@ export const viewer = new Viewer({
           },
 
           /* =================================== 
-                       AKLATANG EMILIO AGUINALDO (AEA)
-                     =================================== */
+              AKLATANG EMILIO AGUINALDO (AEA)
+          =================================== */
           {
             id: "AEA",
             panorama: "./Images/EAST/Establishments/AEA.webp",
             links: [
               { nodeId: "AEA Road (3)", position: { yaw: 4.57, pitch: -0.05 } },
-              {
-                nodeId: "AEA Road (4)",
-                position: { yaw: 7.693, pitch: -0.01 },
-              },
+              { nodeId: "AEA Road (4)", position: { yaw: 7.693, pitch: -0.01 } },
             ],
 
             /* ============================= 
-                            Markers in Path ./Images
-                        ================================ */
+                  Markers in Path ./Images
+            ================================ */
             markers: [
               {
                 id: "go-to-AEA Road (3)",
@@ -2085,7 +2082,7 @@ export const viewer = new Viewer({
                                         <img src="./Images/EAST/Markers/Lake Avenue/Lake Avenue (7).webp" alt="marker image" />
                                         </div>`,
                 anchor: "center center",
-                tooltip: "To Cafe Museo (CM)",
+                tooltip: "To Lake Avenue",
                 style: { cursor: "pointer" },
               },
             ],
