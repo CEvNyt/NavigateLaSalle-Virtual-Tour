@@ -1,21 +1,21 @@
 import { createClient } from "@supabase/supabase-js";
 import fs from "fs";
 import path from "path";
+import mime from "mime";
 
 // ==== 1. Supabase credentials ====
-// Replace with your actual Supabase project URL and secret key
 const SUPABASE_URL = "https://tghodrmjcvuijdsgqbwj.supabase.co";
-const SUPABASE_KEY = "sb_secret_F0Qc-TURLNfZZLqkf-2RzQ_hT4c_25J"; // Secret key from Supabase Settings → API
+const SUPABASE_KEY = "sb_secret_iOTmXhqjQiZ_iZpUwUhjng_b4HSZxVW"; // Secret key from Supabase Settings → API
 const BUCKET_NAME = "virtual-tour"; // The bucket you created
 
-// ==== 2. Local folder to upload ====
+// ==== 2. Path to local assets folder ====
 // Local folder with your 360 images
 const localFolder = path.join(process.cwd(), "public/assets");
 
 // ==== 3. Initialize client ====
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// recursive uploader function
+// === 4. Recursive upload ===
 async function uploadFolder(folderPath, prefix = "") {
   const items = fs.readdirSync(folderPath, { withFileTypes: true });
 
@@ -24,22 +24,18 @@ async function uploadFolder(folderPath, prefix = "") {
     const bucketPath = path.join(prefix, item.name).replace(/\\/g, "/");
 
     if (item.isDirectory()) {
-      // go inside folder
       await uploadFolder(fullPath, bucketPath);
     } else {
-      if (!item.name.endsWith(".webp")) {
-        console.log("Skipping (not webp):", bucketPath);
-        continue;
-      }
-
       const fileBuffer = fs.readFileSync(fullPath);
 
-      console.log("Uploading:", bucketPath);
+      const contentType = mime.getType(fullPath) || "application/octet-stream";
+
+      console.log("Uploading:", bucketPath, "→", contentType);
 
       const { error } = await supabase.storage
         .from(BUCKET_NAME)
         .upload(bucketPath, fileBuffer, {
-          contentType: "image/webp",
+          contentType,
           upsert: true,
         });
 
@@ -51,7 +47,7 @@ async function uploadFolder(folderPath, prefix = "") {
 }
 
 uploadFolder(localFolder)
-  .then(() => console.log("✅ Upload completed!"))
+  .then(() => console.log("✅ ALL FILES UPLOADED SUCCESSFULLY"))
   .catch(err => console.error("❌ Unexpected error:", err));
   
 
