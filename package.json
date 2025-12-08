@@ -19,9 +19,13 @@
     "@photo-sphere-viewer/markers-plugin": "^5.13.1",
     "@photo-sphere-viewer/virtual-tour-plugin": "^5.13.1",
     "@supabase/supabase-js": "^2.86.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "fs": "^0.0.1-security",
     "mime": "^4.1.0",
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.0.1",
     "path": "^0.12.7"
   },
   "devDependencies": {
